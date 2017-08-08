@@ -13,9 +13,18 @@
  * В случае ошибки программа должна сообщать, какой именно аргумент плохой (выводить его значение) и завершаться без
  * дальнейших вычислений. Вывод информации об ошибке должен происходить в стандартный поток ошибок (STDERR)
  *
+ * К программе из п. 6 добавить возможность управлять выводом с помощью опций
+ * -p - если задана эта опция, выводить доли из п. 5, иначе - только числа
+ * --order=<reverse|asc|desc> - если задана такая опция, выводить числа соответственно как в 4a, 4b, 4c. Если не задана,
+ * выводить в исходном порядке.
+ *
  */
 
-$userNumbers = array_slice($argv,1);
+
+$options = getopt('p', ['order::']);
+$optionsCount =  count($options);
+$userNumbers = array_slice($argv, $optionsCount+1);
+$returnText = '';
 
 if (!$userNumbers)
 {
@@ -31,44 +40,127 @@ if ($badElements = implode(" ", getNotIntegers($userNumbers)))
 	exit;
 }
 
-
-$reversedString = implode(" ", array_reverse($userNumbers));
-asort($userNumbers);
-$increasingString = implode(" ", $userNumbers);
-arsort($userNumbers);
-$decreasingString = implode(" ", $userNumbers);
-
-echo "Обратный порядок: " . $reversedString . PHP_EOL;
-echo "По возрастанию: " . $increasingString . PHP_EOL;
-echo "По убыванию: " . $decreasingString . PHP_EOL;
-
-$numbersSum = array_sum($userNumbers);
-if ($numbersSum <= 0)
+if (isset($options['order']))
 {
-	echo "Сумма всех элементов меньше или равна нулю. Корректно посчитать процент каждого числа от суммы всех введенных чисел нельзя" . PHP_EOL;
-	exit;
-}
-
-
-foreach ($userNumbers as $number)
-{
-	if ($number < 0)
-		echo "Корретно посчитать процент отрицательного числа " . $number . " от суммы всех введенных чисел нельзя" . PHP_EOL;
-	else
+	switch ($options['order'])
 	{
-		$percentage = round(($number / $numbersSum) * 100, 2);
-		echo "Число " . $number . " составляет " . $percentage . "% от общей суммы" . PHP_EOL;
+		case 'reverse':
+			$userNumbersReversed = array_reverse($userNumbers);
+			$returnText = $returnText . getReversedString($userNumbers);
+			break;
+		case 'asc':
+			asort($userNumbers);
+			$returnText = $returnText . getIncreasingString($userNumbers);
+			break;
+		case 'desc':
+			arsort($userNumbers);
+			$returnText = $returnText . getDecreasingString($userNumbers);
+			break;
+		default:
+			$orderNotRecognisedText = "Значение параметра order не опознано. Пожалуйста используйте reverse|asc|desc" . PHP_EOL;
+			fwrite(STDERR, $orderNotRecognisedText);
 	}
 }
-
-
-function getNotIntegers($arr)
+else
 {
-	$res_arr = [];
-	foreach ($arr as $arrayElement)
+	$returnText = $returnText .  "Введенные числа: " . implode(" ", $userNumbers) . PHP_EOL;
+}
+
+if (isset($options['p']))
+{
+	$returnText = $returnText . getPercentageString(getPercentageTable($userNumbers));
+}
+
+echo $returnText;
+
+
+/**
+ * @param $userNumbers array
+ *
+ * @return string
+ */
+function getReversedString($userNumbers)
+{
+	$reversedString = implode(" ", $userNumbers);
+	return "Обратный порядок: " . $reversedString . PHP_EOL;
+}
+
+/**
+ * @param $userNumbers array
+ *
+ * @return string
+ */
+function getIncreasingString($userNumbers)
+{
+	$increasingString = implode(" ", $userNumbers);
+	return "По возрастанию: " . $increasingString . PHP_EOL;
+}
+
+/**
+ * @param $userNumbers array
+ *
+ * @return string
+ */
+function getDecreasingString($userNumbers)
+{
+	$decreasingString = implode(" ", $userNumbers);
+	return "По убыванию: " . $decreasingString . PHP_EOL;
+}
+
+/**
+ * @param $userNumbers
+ *
+ * @return array
+ */
+function getPercentageTable($userNumbers)
+{
+	$percentageTable = [];
+	$numbersSum = array_sum($userNumbers);
+	if ($numbersSum <= 0)
+	{
+		$totalSumLessThanZeroText = "Сумма всех элементов меньше или равна нулю. Корректно посчитать процент каждого числа от суммы всех введенных чисел нельзя" . PHP_EOL;
+		fwrite(STDERR,$totalSumLessThanZeroText);
+		exit;
+	}
+	foreach ($userNumbers as $number)
+	{
+		if ($number < 0)
+			fwrite(STDERR, "Корретно посчитать процент отрицательного числа " . $number . " от суммы всех введенных чисел нельзя" . PHP_EOL);
+		else
+		{
+			$percentage = round(($number / $numbersSum) * 100, 2);
+			$percentageTable[$number] = $percentage;
+		}
+	}
+	var_dump($percentageTable);
+	return $percentageTable;
+}
+
+/**
+ * @param $percentageTable array
+ *
+ * @return string
+ */
+function getPercentageString($percentageTable)
+{
+	$percentageString = '';
+	foreach ($percentageTable as $number => $percentage)
+		$percentageString =$percentageString . "Число " . $number . " составляет " . $percentage . "% от общей суммы" . PHP_EOL;
+	return $percentageString;
+}
+
+/**
+ * @param $items array
+ * 
+ * @return array
+ */
+function getNotIntegers($items)
+{
+	$badAdruments = [];
+	foreach ($items as $arrayElement)
 	{
 		if(!preg_match('/^[-]?[\d]+$/', $arrayElement))
-    		array_push($res_arr, $arrayElement);
+    		array_push($badAdruments, $arrayElement);
 	}
-	return $res_arr;
+	return $badAdruments;
 }
