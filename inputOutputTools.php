@@ -16,7 +16,6 @@ function getDataFromStdin($inviteMessage)
 	return $userInput;
 }
 
-
 /**
  * @param string $errorText
  * @param string $exampleText
@@ -26,4 +25,12 @@ function sendDataToStderr($errorText = 'error', $exampleText = '')
 {
 	$errorMessageTotal = $errorText . PHP_EOL . $exampleText . PHP_EOL;
 	fwrite(STDERR, $errorMessageTotal);
+}
+
+/**
+ * @param string $text
+ */
+function sendDataToStdOut($text)
+{
+	fwrite(STDOUT, $text);
 }
