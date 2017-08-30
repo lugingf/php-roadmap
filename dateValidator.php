@@ -7,31 +7,22 @@
 
 include 'inputOutputTools.php';
 include 'validatingFormatTools.php';
+include 'dateTools.php';
+include 'textsTemplates.php';
 
-$noArgsText = "Не введены аргументы.";
-$errorArgsText = "Неверный формат даты:";
-$dateDelimeter = '.';
-$templateForInputDataValidator = '^[\d]{1,2}[' . $dateDelimeter . '][\d]{1,2}[' . $dateDelimeter . '][\d]{1,4}$';
-$exampleText = "Пример: php dateValidator.php 31.12.2017 01.02.2000";
 $datesTexts = [];
-
 $userInput = array_slice($argv, 1);
 if (!$userInput)
 {
-	sendDataToStderr($noArgsText, $exampleText);
+	sendDataToStderr(getPhrase('noArgsText'), getPhrase('example') . $argv[0] . getPhrase('dateFormatExample'));
 	exit(1);
 }
 
 foreach ($userInput as $date)
 {
-	$dateValid = true;
-	$formatValid = true;
-	$explodedDate = explode($dateDelimeter, $date);
-	if (count($explodedDate) <> 3 || !checkdate($explodedDate[1], $explodedDate[0], $explodedDate[2]))
-		$dateValid = false;
-	if (!preg_match('/' . $templateForInputDataValidator . '/', $date))
-		$formatValid = false;
-	$datesTexts[] = "Дата " . $date . ($dateValid ? " корректна" : " не корректна") . (!$formatValid ? ", неверный формат записи" : null) . PHP_EOL;
+	$formatValid = preg_match('/' . getRegex('dateTemplate') . '/', $date) ? true : false;
+	$dateValid = ($formatValid && validateDateConsistent('.', $date));
+	$datesTexts[] = "Дата " . $date . ($dateValid ? " корректна" : " не корректна") . (!$formatValid ? getPhrase('wrongDateFormat') : null) . PHP_EOL;
 }
 
 foreach ($datesTexts as $dateText)
