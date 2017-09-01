@@ -14,6 +14,7 @@ function getPhrase($textName)
 		// common
 		'noArgsText' => 'Не введены аргументы.',
 		'example' => 'Пример: php ',
+		'inviteTranslit' => 'Введите текст кирилицей: ',
 
 		// dates texts
 		'wrongDateFormat' => ', неверный формат даты:',
