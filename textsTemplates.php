@@ -16,6 +16,8 @@ function getPhrase($textName)
 		'example' => 'Пример: php ',
 		'inviteTranslit' => 'Введите текст кирилицей: ',
 
+		'inviteText' => 'Введите текст: ',
+
 		// dates texts
 		'wrongDateFormat' => ', неверный формат даты:',
 		'dateFormatExample' => ' 31.12.2017 01.02.2000',
