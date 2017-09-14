@@ -84,3 +84,50 @@ function switchToRus($word)
 {
 	return strtr($word, array_flip(DEFAULT_KEYBOARD));
 }
+
+/**
+ * @param string $number
+ * @param string $currencyMain
+ * @param string $currencySecondary
+ * @return string
+ */
+function getMoneyFormatText($number, $currencyMain = ROUBLES, $currencySecondary = KOPEKS)
+{
+	$moneyParts = getMoneyParts($number);
+	$mainMoneyText = $moneyParts[0] . ' ' . choseCurrencyWordForm($moneyParts[0], $currencyMain);
+	$secondaryMoneyText = '';
+	if (strlen($moneyParts[1]) > 0 && $moneyParts[1] != '00')
+		$secondaryMoneyText = ' ' . $moneyParts[1] . ' ' . choseCurrencyWordForm($moneyParts[1], $currencySecondary);
+	return $mainMoneyText . $secondaryMoneyText;
+}
+
+/**
+ * @param string $number
+ * @param string $currency
+ * @return string
+ */
+function choseCurrencyWordForm($number, $currency = ROUBLES)
+{
+	$twoLastNumbers = mb_substr(strval($number), -2, 2);
+	$lastNumber = mb_substr(strval($twoLastNumbers), -1, 1);
+	$teens = ['11', '12', '13', '14'];
+	if ($lastNumber == '1' && !in_array($twoLastNumbers, $teens))
+		$form = 0;
+	elseif (in_array($lastNumber, ['2','3','4']) && !in_array($twoLastNumbers, $teens))
+		$form = 1;
+	else
+		$form = 2;
+	return getCurrencyName($currency, $form);
+}
+
+/**
+ * @param string $number
+ * @return array
+ */
+function getMoneyParts($number, $separateThousands = true)
+{
+	$thousandsSeparator = $separateThousands ? ' ' : '';
+	$number = number_format($number, 2, '.', $thousandsSeparator);
+	preg_match_all('/' . getRegex('moneyGroups') . '/', $number, $matches, PREG_PATTERN_ORDER);
+	return [$matches[1][0], $matches[2][0]];
+}
