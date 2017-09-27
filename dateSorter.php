@@ -5,10 +5,10 @@
  * Написать программу, которая получает список дат аналогично п. 2 и выводит корректные даты в хронологическом порядке
  */
 
-include 'inputOutputTools.php';
-include 'validatingFormatTools.php';
-include 'dateTools.php';
-include 'textsTemplates.php';
+include 'tools/inputOutputTools.php';
+include 'tools/validatingFormatTools.php';
+include 'tools/dateTools.php';
+include 'tools/textsTemplates.php';
 
 $userInput = array_slice($argv, 1);
 if (!$userInput)

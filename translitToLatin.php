@@ -5,9 +5,9 @@
  * Написать программу, которая транслитерирует кириллический текст, читая его из стандартного ввода и выплевывая результат в стандартный вывод.
  */
 
-include 'inputOutputTools.php';
-include 'stringTools.php';
-include 'textsTemplates.php';
+include 'tools/inputOutputTools.php';
+include 'tools/stringTools.php';
+include 'tools/textsTemplates.php';
 
 $userText = getDataFromStdin(getPhrase('inviteTranslit'));
 if (!$userText)

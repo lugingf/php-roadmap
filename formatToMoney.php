@@ -7,10 +7,10 @@
  * Если копеек нет, не выводить по ним инфу.
  */
 
-include 'inputOutputTools.php';
-include 'textsTemplates.php';
-include 'stringTools.php';
-include 'validatingFormatTools.php';
+include 'tools/inputOutputTools.php';
+include 'tools/textsTemplates.php';
+include 'tools/stringTools.php';
+include 'tools/validatingFormatTools.php';
 
 $userInput = getDataFromStdin(getPhrase('inviteText'));
 

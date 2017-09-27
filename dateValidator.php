@@ -5,10 +5,10 @@
  * По каждому аргументу вывести результат проверки - ок или нет. Учитывать число дней в месяце и високосность года.
  */
 
-include 'inputOutputTools.php';
-include 'validatingFormatTools.php';
-include 'dateTools.php';
-include 'textsTemplates.php';
+include 'tools/inputOutputTools.php';
+include 'tools/validatingFormatTools.php';
+include 'tools/dateTools.php';
+include 'tools/textsTemplates.php';
 
 $datesTexts = [];
 $userInput = array_slice($argv, 1);

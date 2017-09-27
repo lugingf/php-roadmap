@@ -7,8 +7,8 @@
  * Результирующий массив вывести любой отладочной функцией.
  */
 
-include 'validatingFormatTools.php';
-include 'inputOutputTools.php';
+include 'tools/validatingFormatTools.php';
+include 'tools/inputOutputTools.php';
 
 $noArgsText = "Не введены аргументы.";
 $errorArgsText = "Не подходящие аргументы:";

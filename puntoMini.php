@@ -6,9 +6,9 @@
  * Конвертирует весь ввод вне зависимости от того, в правильной он раскладке или нет.
  */
 
-include 'inputOutputTools.php';
-include 'stringTools.php';
-include 'textsTemplates.php';
+include 'tools/inputOutputTools.php';
+include 'tools/stringTools.php';
+include 'tools/textsTemplates.php';
 
 $userInput = getDataFromStdin(getPhrase('inviteText'));
 if (!$userInput)

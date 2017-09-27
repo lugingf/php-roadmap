@@ -8,8 +8,8 @@
  *
  */
 
-include 'inputOutputTools.php';
-include 'stringTools.php';
+include 'tools/inputOutputTools.php';
+include 'tools/stringTools.php';
 
 $noArgsText = "Не введены аргументы.";
 
