@@ -19,3 +19,12 @@ function getDigitsFromNumber($number)
 	}
 	return $result;
 }
+
+/**
+ * @param int $number
+ * @return int
+ */
+function getFactorial($number)
+{
+	return ($number < 2) ? 1 : $number * getFactorial($number - 1);
+}

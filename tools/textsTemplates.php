@@ -72,6 +72,7 @@ function getPhrase($textName)
 		'example' => 'Пример: php ',
 		'inviteTranslit' => 'Введите текст кирилицей: ',
 		'inviteText' => 'Введите текст: ',
+		'enterIntNumber' => 'Введите положительное целое число',
 
 		// dates texts
 		'wrongDateFormat' => ', неверный формат даты:',
