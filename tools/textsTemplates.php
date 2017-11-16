@@ -73,6 +73,7 @@ function getPhrase($textName)
 		'inviteTranslit' => 'Введите текст кирилицей: ',
 		'inviteText' => 'Введите текст: ',
 		'enterIntNumber' => 'Введите положительное целое число',
+		'noFile' => 'Файл не найден',
 
 		// dates texts
 		'wrongDateFormat' => ', неверный формат даты:',
