@@ -27,7 +27,7 @@ if (!file_exists($userInput))
 $sourceFile = file_get_contents($userInput);
 $explodedInput = explode(';', str_replace(' ', '', trim($sourceFile, ";")));
 
-$temporaryStructure = XMLCreater::createDeepArray($explodedInput);
+$temporaryStructure = XMLCreater::createDeepArray($explodedInput, '.', '=');
 $xmlStructure =  XMLCreater::createXMLFromArray($temporaryStructure);
 $resultFile = fopen('../result.xml', 'w');
 

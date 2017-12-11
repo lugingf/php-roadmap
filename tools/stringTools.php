@@ -237,3 +237,18 @@ function getLittleNumberInWords($number)
 	$textsNumbersArray = array_diff($textsNumbersArray, array(''));
 	return implode(' ', $textsNumbersArray);
 }
+
+/**
+ * @param string $search
+ * @param string $replace
+ * @param string $subject
+ * @return string
+ */
+function strLastReplace($search, $replace, $subject)
+{
+	$result = '';
+	$lastPosition = strrpos($subject, $search);
+	if($lastPosition !== false)
+		$result = substr_replace($subject, $replace, $lastPosition, strlen($search));
+	return $result;
+}

@@ -38,16 +38,21 @@ class XMLCreater
 
 	/**
 	 * @param array $nodes
+	 * @param string $tagDelimeter
+	 * @param string $valueDelimeter
+	 * @param bool $isPath
 	 * @return array
 	 */
-	public static function createDeepArray($nodes)
+	public static function createDeepArray($nodes, $tagDelimeter, $valueDelimeter, $isPath = false)
 	{
 		$result = [];
 		foreach ($nodes as $node)
 		{
-			$data = explode('=', $node);
-			$tags = explode('.', $data[0]);
-			$result[] = self::fillArraysByKeys($tags, 0, $data[1]);
+			if ($isPath)
+				$node = strLastReplace('/', $valueDelimeter, $node);
+			$data = explode($valueDelimeter, $node);
+			$tags = explode($tagDelimeter, $data[0]);
+			$result[] = self::fillArraysByKeys($tags, 0, $data[1], $isPath);
 		}
 		$deepArray = [];
 		foreach ($result as $array)
@@ -59,14 +64,15 @@ class XMLCreater
 	/**
 	 * @param array $tags
 	 * @param int $tagIndex
-	 * @param mixed $value
+	 * @param null $value
+	 * @param bool $isPath
 	 * @return array
 	 */
-	public static function fillArraysByKeys($tags, $tagIndex = 0, $value = null)
+	public static function fillArraysByKeys($tags, $tagIndex = 0, $value = null, $isPath = false)
 	{
 		if (isset($tags[$tagIndex + 1]))
-			return array_fill_keys([$tags[$tagIndex]], self::fillArraysByKeys($tags, ($tagIndex + 1), $value));
-		return array_fill_keys(([$tags[$tagIndex]]), $value);
+			return array_fill_keys([$tags[$tagIndex]], self::fillArraysByKeys($tags, ($tagIndex + 1), $value, $isPath));
+		return array_fill_keys(([$tags[$tagIndex]]), ($isPath ? [$value] : $value));
 	}
 
 	/**
@@ -119,6 +125,8 @@ class XMLCreater
 	 */
 	private static function _getFinalTag($tagName, $value, $tagDepth = 0)
 	{
+		if (is_int($tagName))
+			$tagName = 'file';
 		return str_repeat("\t", $tagDepth) . '<' . $tagName . '>' . $value . '</' . $tagName . '>' . "\n";
 	}
 }
