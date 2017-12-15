@@ -32,5 +32,5 @@ function sendDataToStderr($errorText = 'error', $exampleText = '')
  */
 function sendDataToStdOut($text)
 {
-	fwrite(STDOUT, $text);
+	fwrite(STDOUT, $text . "\n");
 }
