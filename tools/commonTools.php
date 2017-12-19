@@ -18,9 +18,7 @@ function getDirectoryContentInArray($scanDir, $result = [])
 			continue;
 		$fileItem = $scanDir . '/' . $fileItem;
 		if (is_dir($fileItem))
-		{
 			$result = getDirectoryContentInArray($fileItem, $result);
-		}
 		else
 			$result[] = ltrim($fileItem, '/');
 	}
@@ -68,3 +66,16 @@ function readSubDirFilesGenerator($scanDir)
 	closedir($handle);
 }
 
+/**
+ * @deprecated use \oop\ReadFile
+ * 
+ * @param string $path
+ * @return Generator
+ */
+function readFileByLines($path)
+{
+	$fileDescriptor = fopen('/' . $path, 'r');
+	while (($buffer = fgets($fileDescriptor)) !== false)
+		yield $buffer;
+	fclose($fileDescriptor);
+}

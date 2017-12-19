@@ -70,10 +70,17 @@ function getPhrase($textName)
 		// common
 		'noArgsText' => 'Не введены аргументы.',
 		'example' => 'Пример: php ',
+		'logScannerExample' =>
+			"php tasksFromBashRoadmap.php a \t\t\t- статистика числа ошибок за вчерашний день с группировкой по серверам\n" .
+			"php tasksFromBashRoadmap.php b Москва Питер \t- необходимо указать города - раскупаемость направлений\n" .
+			"php tasksFromBashRoadmap.php c 12.07.2016 \t- процент ответов кэша на detail-запросы\n" .
+			"php tasksFromBashRoadmap.php d 4.10.2017 \t- кол-во чашек чая на бою за последние 2 недели\n" .
+			"php tasksFromBashRoadmap.php e \t\t\t- статистика по обращениям к deprecated",
 		'inviteTranslit' => 'Введите текст кирилицей: ',
 		'inviteText' => 'Введите текст: ',
 		'enterIntNumber' => 'Введите положительное целое число',
 		'noFile' => 'Файл не найден',
+		'noLogAction' => 'Операция не определена',
 
 		// dates texts
 		'wrongDateFormat' => ', неверный формат даты:',
