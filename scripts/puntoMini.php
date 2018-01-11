@@ -6,14 +6,12 @@
  * Конвертирует весь ввод вне зависимости от того, в правильной он раскладке или нет.
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/stringTools.php';
-include 'tools/textsTemplates.php';
+require_once __DIR__ . '/../init.php';
 
-$userInput = getDataFromStdin(getPhrase('inviteText'));
+$userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('inviteText'));
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 
@@ -21,9 +19,9 @@ $userWords = explode(' ', $userInput);
 $outputWords = [];
 foreach ($userWords as $word)
 {
-	$switchDirection = getKeyboardSwitchFunction($word);
+	$switchDirection = StringTools::getKeyboardSwitchFunction($word);
 	if ($switchDirection)
 		$word = call_user_func($switchDirection, $word);
 	$outputWords[] = $word;
 }
-sendDataToStdOut(implode(' ', $outputWords) . PHP_EOL);
+InputOutputTools::sendDataToStdOut(implode(' ', $outputWords) . PHP_EOL);

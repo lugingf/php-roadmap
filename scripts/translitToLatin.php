@@ -5,14 +5,12 @@
  * Написать программу, которая транслитерирует кириллический текст, читая его из стандартного ввода и выплевывая результат в стандартный вывод.
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/stringTools.php';
-include 'tools/textsTemplates.php';
+require_once __DIR__ . '/../init.php';
 
-$userText = getDataFromStdin(getPhrase('inviteTranslit'));
+$userText = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('inviteTranslit'));
 if (!$userText)
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 

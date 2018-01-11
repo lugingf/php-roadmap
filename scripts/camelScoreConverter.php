@@ -8,16 +8,15 @@
  *
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/stringTools.php';
+require_once __DIR__ . '/../init.php';
 
 $noArgsText = "Не введены аргументы.";
 
-$userInput = getDataFromStdin('Введите текст: ');
+$userInput = InputOutputTools::getDataFromStdin('Введите текст: ');
 
 if (!$userInput)
 {
-	sendDataToStderr($noArgsText);
+	InputOutputTools::sendDataToStderr($noArgsText);
 	exit(1);
 }
 
@@ -25,9 +24,9 @@ foreach (explode(" ", $userInput) as $word)
 {
 	// Если в строке есть подчеркивание, то однозначно считаем что это underscore нотация. Плюс занижаем все заглавные.
 	if (preg_match('/_/', $word))
-		sendDataToStdOut(underscoreToCamel($word) . PHP_EOL);
+		InputOutputTools::sendDataToStdOut(StringTools::underscoreToCamel($word) . PHP_EOL);
 	elseif (preg_match('/[A-Z]/', $word))
-		sendDataToStdOut(camelCaseToUnderscore($word) . PHP_EOL);
+		InputOutputTools::sendDataToStdOut(StringTools::camelCaseToUnderscore($word) . PHP_EOL);
 	else
-		sendDataToStdOut($word . PHP_EOL);
+		InputOutputTools::sendDataToStdOut($word . PHP_EOL);
 }

@@ -7,8 +7,7 @@
  * Результирующий массив вывести любой отладочной функцией.
  */
 
-include 'tools/validatingFormatTools.php';
-include 'tools/inputOutputTools.php';
+require_once __DIR__ . '/../init.php';
 
 $noArgsText = "Не введены аргументы.";
 $errorArgsText = "Не подходящие аргументы:";
@@ -16,21 +15,21 @@ $templateForInputDataValidator = ".+=";
 $exampleText = "Пример ввода: a=1; b=2; c=agfda; d=";
 $inviteMessage = "Пожалуйста, введите значения: " . $exampleText;
 
-$userInput = getDataFromStdin($inviteMessage);
+$userInput = InputOutputTools::getDataFromStdin($inviteMessage);
 if (!$userInput)
 {
-	sendDataToStderr($noArgsText, $exampleText);
+	InputOutputTools::sendDataToStderr($noArgsText, $exampleText);
 	exit(1);
 }
 
 $explodedInput = explode(';', str_replace(' ', '', $userInput));
 if (preg_match('/;$/', $userInput))
 	$explodedInput = array_slice($explodedInput, 0, count($explodedInput)-1);
-$invalidArguments = getNoFormatItems( $explodedInput, $templateForInputDataValidator);
+$invalidArguments = ValidatingFormatTools::getNoFormatItems( $explodedInput, $templateForInputDataValidator);
 if (count($invalidArguments) > 0)
 {
 	$errorArgsText = $errorArgsText . ' ' . implode(', ', $invalidArguments);
-	sendDataToStderr($errorArgsText, $exampleText);
+	InputOutputTools::sendDataToStderr($errorArgsText, $exampleText);
 	exit(1);
 }
 

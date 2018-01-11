@@ -6,21 +6,19 @@
  * (точки задают уровень вложенности узла). Считать, что нельзя задать значение a.b, если задано, например, a.b.c.
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'oop/XMLCreater.class.php';
+require_once __DIR__ . '/../init.php';
 
 $userInput = $argv[1];
 
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgstext'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgstext'));
 	exit(1);
 }
 
 if (!file_exists($userInput))
 {
-	sendDataToStderr(getPhrase('noFile'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noFile'));
 	exit(1);
 }
 

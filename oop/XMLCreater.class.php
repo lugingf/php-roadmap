@@ -49,7 +49,7 @@ class XMLCreater
 		foreach ($nodes as $node)
 		{
 			if ($isPath)
-				$node = strLastReplace('/', $valueDelimeter, $node);
+				$node = StringTools::strLastReplace('/', $valueDelimeter, $node);
 			$data = explode($valueDelimeter, $node);
 			$tags = explode($tagDelimeter, $data[0]);
 			$result[] = self::fillArraysByKeys($tags, 0, $data[1], $isPath);

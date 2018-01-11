@@ -4,10 +4,7 @@
  * @author Evgeniy Lugin <lugin@tutu.ru>
  *
  */
-namespace oop\LogActions;
-
-
-use oop\FileStringIterator;
+namespace EL\LogActions;
 
 class ErrorCountByServer extends LogActionStrategy
 {

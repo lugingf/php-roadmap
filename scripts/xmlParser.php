@@ -6,15 +6,11 @@
  * всех "листьев" (элементов, у которых нет дочерних элементов)
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'oop/XML2NodeSpecConverter.class.php';
-
-
+require_once __DIR__ . '/../init.php';
 
 if (!isset($argv[1]))
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 
@@ -22,7 +18,7 @@ $userInput = $argv[1];
 
 if (!file_exists($userInput))
 {
-	sendDataToStderr(getPhrase('noFile'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noFile'));
 	exit(1);
 }
 

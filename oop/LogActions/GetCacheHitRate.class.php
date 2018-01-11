@@ -4,7 +4,7 @@
  *
  */
 
-namespace oop\LogActions;
+namespace EL\LogActions;
 
 
 class GetCacheHitRate extends LogActionStrategy

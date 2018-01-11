@@ -7,21 +7,19 @@
  * для N = 2).
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'oop/TowerOfHanoi.class.php';
+require_once __DIR__ . '/../init.php';
 
-$userInput = getDataFromStdin(getPhrase('enterIntNumber'));
+$userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('enterIntNumber'));
 
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 
 if (preg_match('/\D/', $userInput))
 {
-	sendDataToStderr(getPhrase('badAgrs') . $userInput);
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('badAgrs') . $userInput);
 	exit(1);
 }
 
@@ -31,4 +29,4 @@ $toPole = 'C';
 
 $diskCount = $userInput;
 
-sendDataToStdOut(TowerOfHanoi::getMovementsOrder($diskCount, $fromPole, $toPole, $bufferPole));
+InputOutputTools::sendDataToStdOut(TowerOfHanoi::getMovementsOrder($diskCount, $fromPole, $toPole, $bufferPole));

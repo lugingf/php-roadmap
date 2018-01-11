@@ -7,23 +7,20 @@
  * Если копеек нет, не выводить по ним инфу.
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'tools/stringTools.php';
-include 'tools/validatingFormatTools.php';
+require_once __DIR__ . '/../init.php';
 
-$userInput = getDataFromStdin(getPhrase('inviteText'));
+$userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('inviteText'));
 
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 
-if (!preg_match('/' . getRegex('moneyTemplate') . '/', $userInput))
+if (!preg_match('/' . TextsTemplates::getRegex('moneyTemplate') . '/', $userInput))
 {
-	sendDataToStderr(getPhrase('badAgrs') . $userInput);
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('badAgrs') . $userInput);
 	exit(1);
 }
 
-sendDataToStdOut($userInput . ' -> ' . getMoneyFormatText($userInput) . PHP_EOL);
+InputOutputTools::sendDataToStdOut($userInput . ' -> ' . StringTools::getMoneyFormatText($userInput) . PHP_EOL);

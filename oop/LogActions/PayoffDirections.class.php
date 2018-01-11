@@ -6,7 +6,7 @@
  * 200000[0-3] - 200400[016] vs 200000[0-3] - 2040000
  */
 
-namespace oop\LogActions;
+namespace EL\LogActions;
 
 
 class PayoffDirections extends LogActionStrategy

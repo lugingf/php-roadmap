@@ -15,16 +15,7 @@
  * обращениям к deprecated-функционалу. Лог - deprecated
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'tools/commonTools.php';
-include 'oop/LogActions/LogActionStrategy.class.php';
-include 'oop/LogActions/ErrorCountByServer.class.php';
-include 'oop/LogActions/PayoffDirections.class.php';
-include 'oop/LogActions/GetCacheHitRate.class.php';
-include 'oop/LogActions/TeacupCount.class.php';
-include 'oop/LogActions/DeprecatedFuncStat.class.php';
-include 'oop/FileStringIterator.class.php';
+require_once __DIR__ . '/../init.php';
 
 const ACTIONS = [
 	'a' => 'ErrorCountByServer',
@@ -38,26 +29,26 @@ $logDirectory = '/home/lugin/devel/rm_logs/testlogsforphprodmap';
 
 if (!isset($argv[1]))
 {
-	sendDataToStderr(getPhrase('noArgsText') . "\n" . getPhrase('logScannerExample'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText') . "\n" . TextsTemplates::getPhrase('logScannerExample'));
 	exit(1);
 }
 
 $actionCode = $argv[1];
 
-/** @var oop\LogActions\LogActionStrategy $action */
-$action = \oop\LogActions\LogActionStrategy::getAction(ACTIONS[$actionCode] ?? null, array_slice($argv, 2));
+/** @var EL\LogActions\LogActionStrategy $action */
+$action = EL\LogActions\LogActionStrategy::getAction(ACTIONS[$actionCode] ?? null, array_slice($argv, 2));
 
 
 if (is_null($action))
 {
-	sendDataToStderr(getPhrase('noLogAction'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noLogAction'));
 	exit();
 }
 try
 {
-	sendDataToStdOut($action->process());
+	InputOutputTools::sendDataToStdOut($action->process());
 }
 catch (Exception $e)
 {
-	sendDataToStderr($e);
+	InputOutputTools::sendDataToStderr($e);
 }

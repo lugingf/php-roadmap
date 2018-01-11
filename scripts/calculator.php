@@ -6,13 +6,11 @@
  * вложенности.
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'oop/CalculatorString.class.php';
+require_once __DIR__ . '/../init.php';
 
 if (!isset($argv[1]))
 {
-	sendDataToStderr(getPhrase('noArgsText') ."\n". getPhrase('example') . $argv[0] . ' ' . getPhrase('arithmeticExample'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText') ."\n". TextsTemplates::getPhrase('example') . $argv[0] . ' ' . TextsTemplates::getPhrase('arithmeticExample'));
 	exit(1);
 }
 
@@ -24,9 +22,9 @@ try
 }
 catch (\Exception $e)
 {
-	sendDataToStderr($e);
+	InputOutputTools::sendDataToStderr($e);
 	exit();
 }
-sendDataToStdOut($userInput . ' = ' . $calculationResult);
+InputOutputTools::sendDataToStdOut($userInput . ' = ' . $calculationResult);
 
 

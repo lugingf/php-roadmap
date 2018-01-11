@@ -5,7 +5,10 @@
  *
  */
 
-namespace oop\LogActions;
+namespace EL\LogActions;
+
+use EL\FileStringIterator;
+use CommonTools;
 
 abstract class LogActionStrategy
 {
@@ -27,7 +30,7 @@ abstract class LogActionStrategy
 	 */
 	public static function getAction($action, $data)
 	{
-		$className = 'oop\\LogActions\\' . $action;
+		$className = 'EL\\LogActions\\' . $action;
 		if (!class_exists($className))
 			return null;
 		return new $className($data);
@@ -39,7 +42,7 @@ abstract class LogActionStrategy
 	 */
 	protected function _getFilesList($path)
 	{
-		$filesList = getDirectoryContentInArray($this->_logPath . $path);
+		$filesList = CommonTools::getDirectoryContentInArray($this->_logPath . $path);
 		return $filesList;
 	}
 
@@ -53,7 +56,7 @@ abstract class LogActionStrategy
 		$logFiles = $this->_getFilesList($logDirectory);
 		foreach ($logFiles as $file)
 		{
-			$fileIterator = new \oop\FileStringIterator($file);
+			$fileIterator = new FileStringIterator($file);
 			foreach ($fileIterator as $line)
 				yield $line;
 		}

@@ -5,28 +5,24 @@
  * Написать программу, которая построит аналогичное xml-представление для дерева файлов папки lib проекта tutu
  */
 
-include 'tools/commonTools.php';
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'oop/XMLCreater.class.php';
-include 'tools/stringTools.php';
+require_once __DIR__ . '/../init.php';
 
 $userInput = '/home/lugin/devel/projects/tutu/lib';
 
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgstext'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgstext'));
 	exit(1);
 }
 
 if (!file_exists($userInput))
 {
-	sendDataToStderr(getPhrase('noFile'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noFile'));
 	exit(1);
 }
 
 
-$explodedInput = getDirectoryContentInArray($userInput);
+$explodedInput = CommonTools::getDirectoryContentInArray($userInput);
 $temporaryStructure = XMLCreater::createDeepArray($explodedInput, '/', '+FILE_FROM_PATH_DIVIDER+', true);
 $xmlStructure =  XMLCreater::createXMLFromArray($temporaryStructure);
 

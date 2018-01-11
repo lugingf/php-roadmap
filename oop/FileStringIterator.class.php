@@ -4,11 +4,11 @@
  *
  */
 
-namespace oop;
+namespace EL;
 
 /**
  * Class FileStringIterator
- * @package oop
+ * @package EL
  */
 class FileStringIterator implements \Iterator
 {

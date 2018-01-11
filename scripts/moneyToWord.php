@@ -7,23 +7,20 @@
  * (Обратить внимание на возможное отсутствие некоторых разрядов: 1000000 -> "один миллион рублей")
  */
 
-include 'tools/inputOutputTools.php';
-include 'tools/textsTemplates.php';
-include 'tools/stringTools.php';
-include 'tools/numericTools.php';
+require_once __DIR__ . '/../init.php';
 
-$userInput = getDataFromStdin(getPhrase('enterNumberLess'));
+$userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('enterNumberLess'));
 
 if (!$userInput)
 {
-	sendDataToStderr(getPhrase('noArgsText'));
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));
 	exit(1);
 }
 
-if (!preg_match('/' . getRegex('moneyTemplate') . '/', $userInput) || intval($userInput) >= 100000000000000)
+if (!preg_match('/' . TextsTemplates::getRegex('moneyTemplate') . '/', $userInput) || intval($userInput) >= 100000000000000)
 {
-	sendDataToStderr(getPhrase('badAgrs') . $userInput);
+	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('badAgrs') . $userInput);
 	exit(1);
 }
 
-sendDataToStdOut($userInput . ' -> ' . getMoneyWordFormatText($userInput));
+InputOutputTools::sendDataToStdOut($userInput . ' -> ' . StringTools::getMoneyWordFormatText($userInput));
