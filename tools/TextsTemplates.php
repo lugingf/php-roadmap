@@ -69,6 +69,7 @@ class TextsTemplates
 	{
 		$templates = [
 			// common
+			'typeText' => 'Введите текст',
 			'noArgsText' => 'Не введены аргументы.',
 			'example' => 'Пример: php ',
 			'logScannerExample' =>
