@@ -253,6 +253,28 @@ class StringTools
 		if($lastPosition !== false)
 			$result = substr_replace($subject, $replace, $lastPosition, strlen($search));
 		return $result;
-	}	
+	}
+
+	/**
+	 * @param string $text
+	 * @return string
+	 */
+	static function getSeparatedPunctuation(string $text): string
+	{
+		// для простоты эксперимента я введу два нужных нам символа для фильтра. Потому что при использовании \W
+		// из-за кирилицы плывет кодировка
+		return preg_filter(['/[,!]/'], ' $0', $text);
+	}
+
+	/**
+	 * @param string $text
+	 * @return string
+	 */
+	static function getNonSeparatedPunctuation(string $text): string
+	{
+		return preg_filter(['/ ([,!])/'], '$1', $text);
+	}
+
+
 }
 

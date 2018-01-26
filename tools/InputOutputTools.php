@@ -20,7 +20,6 @@ class InputOutputTools
 	/**
 	 * @param string $errorText
 	 * @param string $exampleText
-	 * @param int $errorCode
 	 */
 	public static function sendDataToStderr($errorText = 'error', $exampleText = '')
 	{
@@ -31,8 +30,8 @@ class InputOutputTools
 	/**
 	 * @param string $text
 	 */
-	public static function sendDataToStdOut($text)
+	public static function sendDataToStdOut($text, $lineBreak = "\n")
 	{
-		fwrite(STDOUT, $text . "\n");
+		fwrite(STDOUT, $text . $lineBreak);
 	}
 }
