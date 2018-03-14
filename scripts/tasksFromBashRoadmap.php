@@ -17,6 +17,9 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+
 const ACTIONS = [
 	'a' => 'ErrorCountByServer',
 	'b' => 'PayoffDirections',

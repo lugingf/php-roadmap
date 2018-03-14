@@ -9,6 +9,9 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\ValidatingFormatTools;
+
 $noArgsText = "Не введены аргументы.";
 $errorArgsText = "Не подходящие аргументы:";
 $templateForInputDataValidator = ".+=";

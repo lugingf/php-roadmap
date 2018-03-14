@@ -12,6 +12,7 @@ use EL\TextPainter\Device\Printer;
 use EL\TextPainter\Device\Brush;
 use EL\TextPainter\Device\Pen;
 use EL\TextPainter\Paints;
+use ELT\StringTools;
 
 $baseText = 'Каждый охотник желает знать, где сидит фазан!';
 

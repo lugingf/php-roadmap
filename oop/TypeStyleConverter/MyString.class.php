@@ -47,7 +47,7 @@ class MyString
 	 */
 	public function concatenate(string $glue = '', MyString $text, string $side = 'right'): MyString
 	{
-		if (!isInstanceOf(MyString::class, $text) || gettype($glue) != "string")
+		if (!is_a($text, MyString::class) || gettype($glue) != "string")
 		{
 			throw new \Exception('wrong argument type');
 		}

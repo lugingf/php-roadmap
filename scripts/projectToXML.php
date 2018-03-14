@@ -7,6 +7,11 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use ELT\CommonTools;
+use EL\XMLCreater;
+
 $userInput = '/home/lugin/devel/projects/tutu/lib';
 
 if (!$userInput)

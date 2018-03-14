@@ -4,6 +4,8 @@
  *
  */
 
+namespace ELT;
+
 class CommonTools
 {
 	/**

@@ -3,6 +3,7 @@
  * @author Evgeniy Lugin <lugin@tutu.ru>
  *
  */
+namespace ELT;
 
 class StringTools
 {

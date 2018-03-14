@@ -8,6 +8,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use EL\XML2NodeSpecConverter;
+
 if (!isset($argv[1]))
 {
 	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText'));

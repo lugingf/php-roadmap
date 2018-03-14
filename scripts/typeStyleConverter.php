@@ -8,6 +8,10 @@ use \EL\TypeStyleConverter\MyString;
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use ELT\StringTools;
+
 $userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('typeText'));
 
 if (!$userInput)

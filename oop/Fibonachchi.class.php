@@ -5,6 +5,8 @@
  *
  */
 
+namespace EL;
+
 class Fibonachchi
 {
 	/**

@@ -10,6 +10,9 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\StringTools;
+
 $noArgsText = "Не введены аргументы.";
 
 $userInput = InputOutputTools::getDataFromStdin('Введите текст: ');

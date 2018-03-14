@@ -6,6 +6,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use ELT\NumericTools;
+
 $userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('enterIntNumber'));
 
 if (!$userInput && $userInput != 0)

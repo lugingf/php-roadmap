@@ -4,6 +4,9 @@
  * @author Evgeniy Lugin <lugin@tutu.ru>
  *
  */
+
+namespace EL;
+
 class TowerOfHanoi
 {
 	/**

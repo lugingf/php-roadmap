@@ -1,0 +1,21 @@
+{
+  "name": "lugin/php-lugin",
+  "type": "project",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "lugin",
+      "email": "lugin@tutu.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ELT\\": "tools"
+    },
+    "classmap": [
+      "oop/",
+      "t/lib/"
+    ]
+  }
+}

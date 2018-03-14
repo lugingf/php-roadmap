@@ -8,6 +8,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use EL\CalculatorString;
+
 if (!isset($argv[1]))
 {
 	InputOutputTools::sendDataToStderr(TextsTemplates::getPhrase('noArgsText') ."\n". TextsTemplates::getPhrase('example') . $argv[0] . ' ' . TextsTemplates::getPhrase('arithmeticExample'));

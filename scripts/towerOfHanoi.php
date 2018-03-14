@@ -9,6 +9,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use EL\TowerOfHanoi;
+
 $userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('enterIntNumber'));
 
 if (!$userInput)

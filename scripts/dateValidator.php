@@ -7,6 +7,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use ELT\DateTools;
+
 $datesTexts = [];
 $userInput = array_slice($argv, 1);
 if (!$userInput)

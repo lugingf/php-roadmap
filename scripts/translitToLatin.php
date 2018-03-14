@@ -7,6 +7,9 @@
 
 require_once __DIR__ . '/../init.php';
 
+use \ELT\InputOutputTools;
+use \ELT\TextsTemplates;
+
 $userText = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('inviteTranslit'));
 if (!$userText)
 {

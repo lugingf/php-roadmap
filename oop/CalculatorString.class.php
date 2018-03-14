@@ -5,6 +5,9 @@
  * https://ru.wikipedia.org/wiki/Обратная_польская_запись
  *
  */
+
+namespace EL;
+
 class CalculatorString
 {
 	private static $_operatorPriority = [
@@ -28,9 +31,9 @@ class CalculatorString
 	}
 
 	/**
-	 * @param string $infixNotationExmaple
+	 * @param $infixNotationExmaple
 	 * @return array
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	private static function _getReversePolishNotation($infixNotationExmaple)
 	{

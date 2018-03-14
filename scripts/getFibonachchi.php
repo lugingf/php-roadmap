@@ -7,10 +7,9 @@
 
 require_once __DIR__ . '/../init.php';
 
-//include 'oop/Fibonachchi.class.php';
-//include 'tools/inputOutputTools.php';
-//include 'tools/textsTemplates.php';
-//include 'tools/numericTools.php';
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use EL\Fibonachchi;
 
 $userInput = InputOutputTools::getDataFromStdin(TextsTemplates::getPhrase('enterIntNumber'));
 

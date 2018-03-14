@@ -8,6 +8,10 @@
 
 require_once __DIR__ . '/../init.php';
 
+use ELT\InputOutputTools;
+use ELT\TextsTemplates;
+use EL\XMLCreater;
+
 $userInput = $argv[1];
 
 if (!$userInput)
