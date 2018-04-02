@@ -1,8 +1,11 @@
 {
-  "name": "lugin/php-lugin",
+  "name": "tutu/projects-lugin",
   "type": "project",
   "prefer-stable": true,
   "minimum-stability": "dev",
+  "require": {
+    "tutu/libraries-elasticsearchlog": "2.*"
+  },
   "authors": [
     {
       "name": "lugin",
@@ -17,5 +20,10 @@
       "oop/",
       "t/lib/"
     ]
+  },
+  "extra": {
+    "tutu/libraries-autoload": {
+      "name": "lugin"
+    }
   }
 }
